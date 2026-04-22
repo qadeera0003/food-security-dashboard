@@ -142,7 +142,7 @@ st.sidebar.markdown(
 st.title("🌾 Global Food Security Dashboard")
 st.markdown(
     """
-    **616 million people** — 7.6% of humanity — are still undernourished in 2024.
+    **616 million people**, 7.6% of humanity are still undernourished in 2024.
     After decades of progress, global hunger has been *rising again since 2019*,
     driven by conflict, climate shocks and the COVID-19 pandemic.
     This dashboard uses the World Bank's FAO Food Security dataset to explore
