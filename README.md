@@ -11,3 +11,10 @@ https://data360.worldbank.org/en/dataset/FAO_FS
 
 ## Live App
 [View the dashboard here](YOUR STREAMLIT LINK)
+
+## Dashboard Features
+- World choropleth map of food security indicators
+- Trend analysis with COVID-19 impact chart
+- Country rankings and progress comparison
+- Nutrition profile with 4 dimensions of food security
+- GDP vs hunger scatter plot
