@@ -11,27 +11,12 @@ st.set_page_config(
     layout="wide"
 )
 
-# Data loading
+#data loading
 @st.cache_data
 def load_data():
-    df = pd.read_csv("data/FAO_FS.csv", low_memory=False)
+    df = pd.read_csv("data/FAO_FS_clean.csv")
+    df["Year"] = df["Year"].astype(int)
 
-    # Keep only total sex, main value types
-    clean = df[
-        (df["SEX_LABEL"] == "Total") &
-        (df["UNIT_MEASURE_LABEL"].isin([
-            "Percentage",
-            "Count",
-            "Grams per capita per day",
-            "International Dollar per capita"
-        ]))
-    ][["REF_AREA_LABEL","INDICATOR_LABEL","UNIT_MEASURE_LABEL",
-       "TIME_PERIOD","OBS_VALUE"]].copy()
-
-    clean.columns = ["Country","Indicator","Unit","Year","Value"]
-    clean["Year"] = clean["Year"].astype(int)
-
-    # Add a simplified short name for each indicator for dropdown labels
     name_map = {
         "Number of people undernourished (million) (3-year average)":
             "People Undernourished (millions)",
@@ -56,9 +41,8 @@ def load_data():
         "Gross domestic product per capita, PPP, (constant 2017 international $)":
             "GDP per Capita (PPP, 2017 USD)",
     }
-    clean["Short_Name"] = clean["Indicator"].map(name_map).fillna(clean["Indicator"])
+    df["Short_Name"] = df["Indicator"].map(name_map).fillna(df["Indicator"])
 
-    # Add region column
     region_map = {
         "Afghanistan":"South Asia","Bangladesh":"South Asia","India":"South Asia",
         "Nepal":"South Asia","Pakistan":"South Asia","Sri Lanka":"South Asia",
@@ -97,8 +81,8 @@ def load_data():
         "Tunisia":"Middle East & N. Africa","Yemen, Rep.":"Middle East & N. Africa",
         "Djibouti":"Middle East & N. Africa",
     }
-    clean["Region"] = clean["Country"].map(region_map).fillna("Other")
-    return clean
+    df["Region"] = df["Country"].map(region_map).fillna("Other")
+    return df
 
 df = load_data()
 all_countries  = sorted(df["Country"].unique())
