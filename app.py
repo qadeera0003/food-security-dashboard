@@ -122,8 +122,8 @@ year_range = st.sidebar.slider(
 
 selected_year = st.sidebar.slider(
     "📅 Single Year (Map & Rankings)",
-    min_value=2000, max_value=2024,
-    value=2024
+    min_value=2000, max_value=2022,
+    value=2022
 )
 
 top_n = st.sidebar.slider(
